@@ -1,6 +1,6 @@
 classDiagram
 
-    class Jeu{
+    class Jeu{ 
     }
 
     class Grille{
