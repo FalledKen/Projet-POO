@@ -1,0 +1,20 @@
+Liste de ce que doit faire notre code :
+-Demande le fichier source en input
+-Lis le fichier texte :
+    -Récupère paramètres : nb lignes ; nb de colonnes
+    -Reconstruit la grille telle que donnée
+-Instancie les cellules non définies à morte (par défaut)
+-Demande le mode (graphique ou console)
+-Demander le nombre d'iténarations (n)
+///Mode console
+-Créer le dossier out
+-Faire les changements
+-Si la grille etat suivant == grille etat actuel  OR itération == n ALORS fin
+-Sinon enregistrer la grille de etat suivant dans le dossier out en txt
+-Etat actuel = etat suivant
+
+///Mode graphique
+-Faire les changements
+-Si la grille etat suivant == grille etat actuel  OR itération == n ALORS fin
+-Afficher dans l'interface graphique
+
