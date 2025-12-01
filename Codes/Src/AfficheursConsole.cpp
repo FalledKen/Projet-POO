@@ -2,7 +2,9 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "AfficheurConsole.hpp"
+#include <iostream>
 
-#endif //PROJET_POO_CELLULE_H
+void AfficheurConsole::afficher(const Grille& g, int iterations) {
+    // Affichage texte dans la console
+}

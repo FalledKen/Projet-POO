@@ -2,7 +2,6 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "Observer.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+// Vide car interface pure

@@ -2,7 +2,12 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "EtatMort.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+bool EtatMort::valeur() const {
+    return false;
+}
+
+std::unique_ptr<Etat> EtatMort::cloner() const {
+    return std::make_unique<EtatMort>(*this);
+}

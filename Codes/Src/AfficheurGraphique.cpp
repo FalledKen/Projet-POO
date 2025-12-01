@@ -2,7 +2,8 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "AfficheurGraphique.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+void AfficheurGraphique::afficher(const Grille& g, int iterations) {
+    // Affichage graphique (SDL ou autre)
+}

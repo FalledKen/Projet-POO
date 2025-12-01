@@ -2,7 +2,14 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "Observable.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+void Observable::ajouterObservateur(Observer* o) {
+    observateurs.push_back(o);
+}
+
+void Observable::notifierNouvelleGrille() {
+    for (auto& obs : observateurs) {
+        obs->update();
+    }
+}

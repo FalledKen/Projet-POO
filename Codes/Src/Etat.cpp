@@ -2,7 +2,8 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "Etat.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+// Vide car Etat est une classe abstraite
+// Définition du destructeur virtuel
+Etat::~Etat() = default;

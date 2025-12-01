@@ -2,7 +2,8 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#include "Regles.hpp"
 
-#endif //PROJET_POO_CELLULE_H
+// Vide car Regles est une classe abstraite
+// On pourrait définir le destructeur si nécessaire
+Regles::~Regles() = default;
