@@ -2,7 +2,21 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#ifndef OBSERVABLE_HPP
+#define OBSERVABLE_HPP
 
-#endif //PROJET_POO_CELLULE_H
+#include <vector>
+#include "Observer.hpp"
+
+class Observable {
+protected:
+    std::vector<Observer*> observateurs;
+
+public:
+    virtual ~Observable() = default;
+
+    virtual void ajouterObservateur(Observer* o);
+    virtual void notifierNouvelleGrille();
+};
+
+#endif

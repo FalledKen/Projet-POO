@@ -2,7 +2,14 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#ifndef AFFICHEURCONSOLE_HPP
+#define AFFICHEURCONSOLE_HPP
 
-#endif //PROJET_POO_CELLULE_H
+#include "Afficheurs.hpp"
+
+class AfficheurConsole : public Afficheurs {
+public:
+    void afficher(const Grille& g, int iterations) override;
+};
+
+#endif

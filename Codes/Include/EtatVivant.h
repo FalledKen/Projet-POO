@@ -2,7 +2,15 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#ifndef ETATVIVANT_HPP
+#define ETATVIVANT_HPP
 
-#endif //PROJET_POO_CELLULE_H
+#include "Etat.hpp"
+
+class EtatVivant : public Etat {
+public:
+    bool valeur() const override;
+    std::unique_ptr<Etat> cloner() const override;
+};
+
+#endif

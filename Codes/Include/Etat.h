@@ -2,7 +2,17 @@
 // Created by silic on 01/12/2025.
 //
 
-#ifndef PROJET_POO_CELLULE_H
-#define PROJET_POO_CELLULE_H
+#ifndef ETAT_HPP
+#define ETAT_HPP
 
-#endif //PROJET_POO_CELLULE_H
+#include <memory>
+
+class Etat {
+public:
+    virtual ~Etat() = default;
+
+    virtual bool valeur() const = 0;
+    virtual std::unique_ptr<Etat> cloner() const = 0;
+};
+
+#endif
