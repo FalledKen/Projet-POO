@@ -14,15 +14,18 @@ Jeu o-- Grille : "possède"
 Jeu ..> Regles : "utilise"
 
 
-
+class Afficheurs{
+    +virtual void afficher(const Grille& g, int iterations) 
+}
 class AfficheurConsole {
-    +void afficher(const Grille& g, int iteration)
+    +void afficher(const Grille& g, int iterations) override
 }
 class AfficheurGraphique {
-    +void afficher(const Grille& g)
+    +void afficher(const Grille& g, int iterations) override
 }
-Jeu o-- AfficheurConsole
-Jeu o-- AfficheurGraphique
+Jeu o-- Afficheurs
+Afficheurs <|-- AfficheurGraphique
+Afficheurs <|-- AfficheurConsole
 
 
 
@@ -106,7 +109,7 @@ Etat <|-- EtatMort
 
 
 class Regles {
-    <<interface>>
+    <<abstract>>
     +virtual unique_ptr< Etat> changementEtat(const Etat& etatCourant, int nbVoisines) = 0
 }
 class RegleJDLV {
@@ -114,3 +117,16 @@ class RegleJDLV {
 }
 Regles <|-- RegleJDLV
 Regles .. Cellule : "utilise"
+
+
+
+
+
+
+
+
+
+
+
+
+
