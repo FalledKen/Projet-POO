@@ -2,6 +2,7 @@ classDiagram
 class Jeu {
     -Grille grille_du_jeu
     -Regles* regles_du_jeu
+    -Fichier fichier_du_jeu
     -int iterationsMax
     -int tempsParIteration
     -int mode
@@ -15,9 +16,10 @@ Jeu ..> Regles : "utilise"
 
 
 class Afficheurs{
-    +virtual void afficher(const Grille& g, int iterations) 
+    +virtual void afficher(const Grille& g, int iterations)
 }
 class AfficheurConsole {
+    -Fichier ecriture
     +void afficher(const Grille& g, int iterations) override
 }
 class AfficheurGraphique {
@@ -28,6 +30,23 @@ Afficheurs <|-- AfficheurGraphique
 Afficheurs <|-- AfficheurConsole
 
 
+class Fichier {
+    -string nom
+    -string dossier_out
+    -vector<vector<int>> matrice
+    -int nbLignes
+    -int nbColonnes
+    +Fichier()
+    +void demanderNomFichier()
+    +void lireFichier()
+    +const vector<vector<int>>& getMatrice() const
+    +int getLignes() const
+    +int getColonnes() const
+    +void creerDossierOut()
+    +void creerFichierOut(int iteration, const Grille& g)
+}
+Grille ..> Fichier
+AfficheurConsole ..> Fichier
 
 
 class Observer {
@@ -48,14 +67,15 @@ class Grille {
     -int nb_colonnes
     -vector< vector< unique_ptr< Cellule>>> cellules
     +Grille()
-    +void initialisation()
+    +void initialisation(vector< vector< int>> matrice)
     +int getLignes() const
     +int getColonnes() const
     +Cellule& getCellule(int l, int c) const
     +int compterVoisinesVivantes(int l, int c) const
     +void ajouterObservateur(Observer* o)
     +void notifierNouvelleGrille() override
-    +void actualiserGrille() override
+    +void grilleSuivante()
+    +void actualiserGrille()
 }
 Grille o-- Cellule : "contient"
 Grille --|> Observable
@@ -75,7 +95,7 @@ class Cellule {
     +Cellule(unique_ptr< Etat> etat_initial, int l, int c, Grille* g, Regles* r)
     +void update() override
     +void calculerEtatSuivant()
-    +void appliquerEtatSuivant()
+    +void actualiserEtatSuivant()
     +bool estVivante() const
     +Etat& getEtatActuel() const
 }
@@ -117,16 +137,3 @@ class RegleJDLV {
 }
 Regles <|-- RegleJDLV
 Regles .. Cellule : "utilise"
-
-
-
-
-
-
-
-
-
-
-
-
-
