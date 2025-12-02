@@ -27,7 +27,8 @@ public:
     Cellule(std::unique_ptr<Etat> etat_initial, int l, int c, Grille* g, Regles* r);
 
     void update() override;
-    void calculerEtatSuivant();
+    void actualiserEtatSuivant();
+    void reinitialiserEtatSuivant();
     void appliquerEtatSuivant();
 
     bool estVivante() const;

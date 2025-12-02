@@ -6,5 +6,6 @@
 
 std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbVoisines) {
     // Implémentation règles classiques du Jeu de la Vie
+
     return etatCourant.cloner();
 }

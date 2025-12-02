@@ -18,8 +18,12 @@ void Cellule::calculerEtatSuivant() {
     // Calculer état suivant
 }
 
-void Cellule::appliquerEtatSuivant() {
+void Cellule::actualiserEtatSuivant() {
     // Appliquer état suivant
+}
+
+void Cellule::reinitialiserEtatSuivant() {
+    etat_suivant = std::make_unique<Etat>(false); // false = mort
 }
 
 bool Cellule::estVivante() const {

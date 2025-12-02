@@ -29,6 +29,7 @@ public:
 
     int compterVoisinesVivantes(int l, int c) const;
 
+    void grilleSuivante();
     void notifierNouvelleGrille() override;
     void actualiserGrille();
 };

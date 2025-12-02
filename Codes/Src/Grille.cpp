@@ -26,14 +26,53 @@ Cellule& Grille::getCellule(int l, int c) const {
 }
 
 int Grille::compterVoisinesVivantes(int l, int c) const {
-    // Retourner le nombre de voisines vivantes
-    return 0;
+    int count = 0;
+
+    for (int dl = -1; dl <= 1; ++dl) {
+        for (int dc = -1; dc <= 1; ++dc) {
+
+            // On ignore la cellule elle-même
+            if (dl == 0 && dc == 0)
+                continue;
+
+            int nl = l + dl;
+            int nc = c + dc;
+
+            // Vérification des bornes
+            if (nl >= 0 && nl < nb_lignes &&
+                nc >= 0 && nc < nb_colonnes) {
+
+                // Vérifie simplement et uniquement l'état actuel
+                if (cellules[nl][nc]->estVivante()) {
+                    count++;
+                }
+                }
+        }
+    }
+    return count;
 }
+
+void Grille::grilleSuivante() {
+    for (int l = 0; l < nb_lignes; ++l) {
+        for (int c = 0; c < nb_colonnes; ++c) {
+            cellules[l][c]->calculerEtatSuivant();
+        }
+    }
+}
+
 
 void Grille::notifierNouvelleGrille() {
     Observable::notifierNouvelleGrille();
 }
 
 void Grille::actualiserGrille() {
-    // Calculer la grille suivante
+    for (int l = 0; l < nb_lignes; ++l) {
+        for (int c = 0; c < nb_colonnes; ++c) {
+            // Applique l'état suivant à l'état actuel
+            cellules[l][c]->actualiserEtatSuivant();
+
+            // Réinitialise l'état suivant à mort
+            cellules[l][c]->reinitialiserEtatSuivant();
+        }
+    }
 }
