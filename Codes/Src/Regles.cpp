@@ -4,6 +4,6 @@
 
 #include "Regles.hpp"
 
-// Vide car Regles est une classe abstraite
+// Vide car Regles est une classe purement abstraite
 // On pourrait définir le destructeur si nécessaire
 Regles::~Regles() = default;
