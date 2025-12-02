@@ -34,8 +34,6 @@ class Fichier {
     -string nom
     -string dossier_out
     -vector<vector<int>> matrice
-    -int nbLignes
-    -int nbColonnes
     +Fichier()
     +void demanderNomFichier()
     +void lireFichier()
