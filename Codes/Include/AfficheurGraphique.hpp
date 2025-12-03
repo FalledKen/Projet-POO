@@ -6,10 +6,20 @@
 #define AFFICHEURGRAPHIQUE_HPP
 
 #include "Afficheurs.hpp"
+#include "Grille.hpp"
+#include <SFML/Graphics.hpp>
 
 class AfficheurGraphique : public Afficheurs {
 public:
-    void afficher(const Grille& g, int iterations) override;
+    // Constructeur avec taille de fenêtre optionnelle
+    AfficheurGraphique(int windowSize = 800);
+
+    // Fonction héritée : affiche la grille pour une itération
+    void afficher(const Grille& g, int iteration, int tempsParIteration);
+
+private:
+    int windowSize;
+    sf::RenderWindow window; // fenêtre SFML unique
 };
 
-#endif
+#endif // AFFICHEURGRAPHIQUE_HPP

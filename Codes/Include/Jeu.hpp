@@ -14,7 +14,7 @@ private:
     Grille grille_du_jeu;
     Regles* regles_du_jeu;
 
-    int iterationsMax;
+    int iterations;
     int tempsParIteration;
     int mode;
 
@@ -24,6 +24,10 @@ private:
 public:
     Jeu();
     void lancerSimulation();
+    int getIterations();
+    int getTempsParIteration();
+    int getMode();
+
 };
 
 #endif

@@ -8,6 +8,18 @@ Jeu::Jeu() {
     // Constructeur : initialisation si nécessaire
 }
 
+int Jeu::getIterations() const {
+    return iterations;
+}
+
+int Jeu::getTempsParIteration() const {
+    return tempsParIteration;
+}
+
+int Jeu::getMode() const {
+    return mode;
+}
+
 void Jeu::lancerSimulation() {
     // Lancer la simulation selon le mode
 }
