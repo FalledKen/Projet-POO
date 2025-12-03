@@ -19,6 +19,7 @@ flowchart TB
         S_iterLoop@{ label: "Pour chaque itération t = 1 à n jusqu'à stabilité" }
         S_testContinue{"Dernière itération ou état stable ?"}
   end
+
  subgraph ComposantsLayer["Composants :"]
         C_initCells(["Grille.initialisation()(création des Cellule)"])
         C_initEtat(["Chaque Cellule crée un unique_ptr EtatVivant ou EtatMort selon le fichier"])
