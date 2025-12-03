@@ -9,6 +9,7 @@
 #include <memory>
 #include "Cellule.hpp"
 
+
 class Grille : public Observable {
 private:
     int nb_lignes;

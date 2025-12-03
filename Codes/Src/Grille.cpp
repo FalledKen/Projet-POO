@@ -4,6 +4,7 @@
 
 #include "Grille.hpp"
 
+
 Grille::Grille(){
     // Initialisation
     nb_lignes = 0;

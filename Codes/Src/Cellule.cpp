@@ -6,6 +6,7 @@
 #include "Grille.hpp"
 #include "Regles.hpp"
 
+
 Cellule::Cellule(std::unique_ptr<Etat> etat_initial, int l, int c, Grille* g, Regles* r)
     : etat_actuel(std::move(etat_initial)), etat_suivant(nullptr), ligne(l), colonne(c), grille(g), regles(r) {
 }
