@@ -31,6 +31,7 @@ void Cellule::actualiserEtatSuivant() {
     }
 }
 
+
 /*
 void Cellule::update() {
     // Mise à jour de l'état
