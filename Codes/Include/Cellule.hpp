@@ -29,6 +29,7 @@ public:
 
     bool estVivante() const;
     Etat& getEtatActuel() const;
+    Etat& getEtatSuivant() const;
     void calculerEtatSuivant();
     void actualiserEtatSuivant();
     //void update() override;   (en commentaire car lié à Observer)

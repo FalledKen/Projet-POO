@@ -18,6 +18,10 @@ Etat& Cellule::getEtatActuel() const {
     return *etat_actuel;
 }
 
+Etat& Cellule::getEtatSuivant() const {
+    return *etat_suivant;
+}
+
 void Cellule::calculerEtatSuivant() {
     // Calculer état suivant
     int voisines = grille->compterVoisinesVivantes(ligne, colonne);
