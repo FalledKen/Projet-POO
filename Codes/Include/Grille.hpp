@@ -18,9 +18,9 @@ private:
     std::vector<std::vector<std::unique_ptr<Cellule>>> cellules;
 
 public:
-    Grille(int lignes = 0, int colonnes = 0);
+    Grille();
 
-    void initialisation();
+    void initialisation(std::vector<std::vector<int>> matrice);
 
     int getLignes() const;
     int getColonnes() const;
@@ -28,10 +28,13 @@ public:
     Cellule& getCellule(int l, int c) const;
 
     int compterVoisinesVivantes(int l, int c) const;
-
     void grilleSuivante();
-    void notifierNouvelleGrille() override;
     void actualiserGrille();
+
+    /*
+    void ajouterObservateur() override;
+    void notifierNouvelleGrille() override;
+    */
 };
 
 #endif

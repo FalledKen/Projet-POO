@@ -4,13 +4,32 @@
 
 #include "Grille.hpp"
 
-Grille::Grille(int lignes, int colonnes)
-    : nb_lignes(lignes), nb_colonnes(colonnes) {
+Grille::Grille(){
     // Initialisation
+    nb_lignes = 0;
+    nb_colonnes = 0;
 }
 
-void Grille::initialisation() {
+void Grille::initialisation(std::vector<std::vector<int>> matrice) {
     // Initialisation des cellules
+    nb_lignes = matrice.size();
+    nb_colonnes = matrice[0].size();
+
+    cellules.resize(nb_lignes);             // on resize la grille (nb de lignes)
+    for (int i = 0; i < nb_lignes; i++) {
+        cellules[i].resize(nb_colonnes);    // on resize la grille (nb de colonnes)
+    }
+
+    for (int i = 0; i < nb_lignes; i++){
+        for (int j = 0; j < nb_colonnes; j++){
+            if (matrice[i][j] == 0){
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatMort>(), i, j, this, nullptr);
+            }
+            else if (matrice[i][j] == 1){
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatVivant>(), i, j, this, nullptr);
+            }
+        }
+    }
 }
 
 int Grille::getLignes() const {
@@ -21,17 +40,21 @@ int Grille::getColonnes() const {
     return nb_colonnes;
 }
 
+
 Cellule& Grille::getCellule(int l, int c) const {
+    if (l < 0 || c < 0 || l >= nb_lignes || c >= nb_colonnes){
+        throw std::out_of_range("Indice cellule hors de la grille !!");
+        }
     return *cellules[l][c];
 }
 
+
 int Grille::compterVoisinesVivantes(int l, int c) const {
-    int count = 0;
+    int compteur = 0;
 
     for (int dl = -1; dl <= 1; ++dl) {
         for (int dc = -1; dc <= 1; ++dc) {
 
-            // On ignore la cellule elle-même
             if (dl == 0 && dc == 0)
                 continue;
 
@@ -44,35 +67,36 @@ int Grille::compterVoisinesVivantes(int l, int c) const {
 
                 // Vérifie simplement et uniquement l'état actuel
                 if (cellules[nl][nc]->estVivante()) {
-                    count++;
+                    compteur++;
                 }
                 }
         }
     }
-    return count;
+    return compteur;
 }
 
 void Grille::grilleSuivante() {
-    for (int l = 0; l < nb_lignes; ++l) {
-        for (int c = 0; c < nb_colonnes; ++c) {
-            cellules[l][c]->calculerEtatSuivant();
+    for (int i = 0; l < nb_lignes; ++l) {
+        for (int j = 0; c < nb_colonnes; ++c) {
+            cellules[i][j]->calculerEtatSuivant();
         }
     }
-}
-
-
-void Grille::notifierNouvelleGrille() {
-    Observable::notifierNouvelleGrille();
 }
 
 void Grille::actualiserGrille() {
     for (int l = 0; l < nb_lignes; ++l) {
         for (int c = 0; c < nb_colonnes; ++c) {
-            // Applique l'état suivant à l'état actuel
+            // pour chaque cellule : etat_actuel = eta_suivant et on met etat_suivant a nullptr ensuite
             cellules[l][c]->actualiserEtatSuivant();
-
-            // Réinitialise l'état suivant à mort
-            cellules[l][c]->reinitialiserEtatSuivant();
         }
     }
 }
+
+/*
+
+void Grille ::ajouterObservateur(Observer* o){
+}
+void Grille::notifierNouvelleGrille() {
+
+}
+*/
