@@ -2,7 +2,8 @@
 // Created by silic on 01/12/2025.
 //
 
-#pragma once
+#ifndef REGLESJDLV_HPP
+#define REGLESJDLV_HPP
 
 #include "Regles.hpp"
 #include "EtatVivant.hpp"
@@ -12,3 +13,5 @@ class RegleJDLV : public Regles {
 public:
     std::unique_ptr<Etat> changementEtat(const Etat& etatCourant, int nbVoisines) override;
 };
+
+#endif
