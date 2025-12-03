@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <memory>
-#include "Observable.hpp"
 #include "Cellule.hpp"
 
 class Grille : public Observable {
@@ -30,11 +29,6 @@ public:
     int compterVoisinesVivantes(int l, int c) const;
     void grilleSuivante();
     void actualiserGrille();
-
-    /*
-    void ajouterObservateur() override;
-    void notifierNouvelleGrille() override;
-    */
 };
 
 #endif

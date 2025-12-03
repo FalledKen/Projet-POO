@@ -98,12 +98,3 @@ void Grille::actualiserGrille() {
             /* Fonction de fin*/
 }
 }
-
-/*
-
-void Grille ::ajouterObservateur(Observer* o){
-}
-void Grille::notifierNouvelleGrille() {
-
-}
-*/

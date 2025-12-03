@@ -34,10 +34,3 @@ void Cellule::actualiserEtatSuivant() {
         etat_actuel = std::move(etat_suivant);
     }
 }
-
-
-/*
-void Cellule::update() {
-    // Mise à jour de l'état
-}
-*/ // concerne l'Observers : on le met en commentaire car on est pas sur de s'en servir

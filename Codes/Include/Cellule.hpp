@@ -7,7 +7,6 @@
 
 #include <memory>
 #include "Etat.hpp"
-#include "Observer.hpp"
 
 class Grille;
 class Regles;
@@ -32,7 +31,7 @@ public:
     Etat& getEtatSuivant() const;
     void calculerEtatSuivant();
     void actualiserEtatSuivant();
-    //void update() override;   (en commentaire car lié à Observer)
+
 };
 
 
