@@ -31,7 +31,7 @@ public:
     Etat& getEtatActuel() const;
     void calculerEtatSuivant();
     void actualiserEtatSuivant();
-    void update() override;
+    //void update() override;   (en commentaire car lié à Observer)
 };
 
 
