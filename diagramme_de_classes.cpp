@@ -3,10 +3,13 @@ class Jeu {
     -Grille grille_du_jeu
     -Regles* regles_du_jeu
     -Fichier fichier_du_jeu
-    -int iterationsMax
+    -int iterations
     -int tempsParIteration
     -int mode
     +Jeu()
+    +int getIterations() const
+    +int getTempsParIteration() const
+    +int getMode() const
     +void lancerSimulation()
     -void lancerModeConsole()
     -void lancerModeGraphique()
@@ -16,7 +19,7 @@ Jeu ..> Regles : "utilise"
 
 
 class Afficheurs{
-    +virtual void afficher(const Grille& g, int iterations)
+    +virtual void afficher(const Grille& g, int iterations) 
 }
 class AfficheurConsole {
     -Fichier ecriture
@@ -33,12 +36,12 @@ Afficheurs <|-- AfficheurConsole
 class Fichier {
     -string nom
     -string dossier_out
-    -vector<vector<int>> matrice
+    -vector< vector< int>> matrice
     +Fichier()
     +void demanderNomFichier()
     +void lireFichier()
     +const vector<vector<int>>& getMatrice() const
-    +int getLignes() const
+    +int getLignes() const 
     +int getColonnes() const
     +void creerDossierOut()
     +void creerFichierOut(int iteration, const Grille& g)
@@ -135,3 +138,16 @@ class RegleJDLV {
 }
 Regles <|-- RegleJDLV
 Regles .. Cellule : "utilise"
+
+
+
+
+
+
+
+
+
+
+
+
+
