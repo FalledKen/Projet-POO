@@ -10,9 +10,8 @@
 
 class Regles {
 public:
-    virtual ~Regles() = default;
-
     virtual std::unique_ptr<Etat> changementEtat(const Etat& etatCourant, int nbVoisines) = 0;
+    virtual ~Regles() = default;
 };
 
 #endif

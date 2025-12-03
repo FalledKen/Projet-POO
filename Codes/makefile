@@ -2,15 +2,14 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -IInclude -g
 
-# --- Fichiers source dans Src + le main ---
+# --- Chemin vers SFML (adapter selon ton installation) ---
+SFML_LIB = -lsfml-graphics -lsfml-window -lsfml-system
+
+# --- Sources et objets ---
 SRC = $(wildcard Src/*.cpp)
-MAIN = main.cpp
+SRC += main.cpp
 
-# --- Tous les fichiers à compiler ---
-SRCS = $(SRC) $(MAIN)
-
-# --- Transformation : .cpp -> .o ---
-OBJ = $(SRCS:.cpp=.o)
+OBJ = $(SRC:.cpp=.o)
 
 # --- Nom de l'exécutable ---
 EXEC = jeu_de_la_vie
@@ -18,11 +17,11 @@ EXEC = jeu_de_la_vie
 # --- Règle principale ---
 all: $(EXEC)
 
-# --- Construction de l'exécutable ---
+# --- Compilation de l'exécutable ---
 $(EXEC): $(OBJ)
-	$(CXX) $(OBJ) -o $(EXEC)
+	$(CXX) $(OBJ) -o $(EXEC) $(SFML_LIB)
 
-# --- Compilation générique ---
+# --- Compilation des .cpp en .o ---
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -30,9 +29,9 @@ $(EXEC): $(OBJ)
 clean:
 	rm -f *.o Src/*.o main.o $(EXEC)
 
-# --- Recompile tout ---
+# --- Recompiler entièrement ---
 re: clean all
 
-# --- Exécuter ---
+# --- Lancer le programme ---
 run: $(EXEC)
 	./$(EXEC)
