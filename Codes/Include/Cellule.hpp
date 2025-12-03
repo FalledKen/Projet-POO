@@ -13,6 +13,7 @@ class Grille;
 class Regles;
 
 class Cellule : public Observer {
+
 private:
     std::unique_ptr<Etat> etat_actuel;
     std::unique_ptr<Etat> etat_suivant;
@@ -26,13 +27,11 @@ private:
 public:
     Cellule(std::unique_ptr<Etat> etat_initial, int l, int c, Grille* g, Regles* r);
 
-    void update() override;
-    void actualiserEtatSuivant();
-    void reinitialiserEtatSuivant();
-    void appliquerEtatSuivant();
-
     bool estVivante() const;
     Etat& getEtatActuel() const;
+    void calculerEtatSuivant();
+    void actualiserEtatSuivant();
+    void update() override;
 };
 
 #endif
