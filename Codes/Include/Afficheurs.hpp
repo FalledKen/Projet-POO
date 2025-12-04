@@ -10,7 +10,7 @@
 class Afficheurs {
 public:
     virtual ~Afficheurs() = default;
-    virtual void afficher(const Grille& g, int iterations) = 0;
+    virtual void afficher(const Grille& g, int iterations, int tempsParIteration) = 0;
 };
 
 #endif
