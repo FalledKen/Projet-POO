@@ -19,6 +19,7 @@ Jeu ..> Regles : "utilise"
 
 
 class Afficheurs{
+    <<abstract>>
     +virtual void afficher(const Grille& g, int iterations) 
 }
 class AfficheurConsole {
@@ -50,16 +51,7 @@ Grille ..> Fichier
 AfficheurConsole ..> Fichier
 
 
-class Observer {
-    <<interface>>
-    +virtual void update() = 0
-}
-class Observable {
-    <<interface>>
-    -vector< Observer*> observateurs
-    +virtual void ajouterObservateur(Observer* o)
-    +virtual void notifierNouvelleGrille()
-}
+
 
 
 
@@ -73,13 +65,10 @@ class Grille {
     +int getColonnes() const
     +Cellule& getCellule(int l, int c) const
     +int compterVoisinesVivantes(int l, int c) const
-    +void ajouterObservateur(Observer* o)
-    +void notifierNouvelleGrille() override
     +void grilleSuivante()
     +void actualiserGrille()
 }
 Grille o-- Cellule : "contient"
-Grille --|> Observable
 Regles .. Grille : "utilise"
 
 
@@ -94,14 +83,13 @@ class Cellule {
     -Grille* grille
     -Regles* regles
     +Cellule(unique_ptr< Etat> etat_initial, int l, int c, Grille* g, Regles* r)
-    +void update() override
     +void calculerEtatSuivant()
     +void actualiserEtatSuivant()
     +bool estVivante() const
     +Etat& getEtatActuel() const
 }
 Cellule o-- Etat : "possède"
-Cellule --|> Observer
+
 
 
 
@@ -142,6 +130,16 @@ Regles .. Cellule : "utilise"
 
 
 
+class TestsUnitaires {
+    +testInitialisationGrille()
+    +testCompterVoisines()
+    +testEvolutionCellule()
+    +testLectureFichier()
+    +testEcritureFichier()
+}
+
+
+TestsUnitaires ..> Jeu : teste
 
 
 
