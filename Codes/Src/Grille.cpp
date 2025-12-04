@@ -90,17 +90,18 @@ void Grille::grilleSuivante() {
 }
 
 void Grille::actualiserGrille() {
-    int cpt;
+    int cpt = 0;
     for (int l = 0; l < nb_lignes; ++l) {
         for (int c = 0; c < nb_colonnes; ++c) {
             // pour chaque cellule : etat_actuel = eta_suivant et on met etat_suivant a nullptr ensuite
-            if (cellules[l][c]->getEtatActuel() == cellules[l][c]->getEtatSuivant()) {
+            if (cellules[l][c]->getEtatActuel().valeur() == 
+                cellules[l][c]->getEtatSuivant().valeur()) {
                 cpt++;
             }
             cellules[l][c]->actualiserEtatSuivant();
         }
     }
-    if (cpt == nb_lignes*nb_colonnes) {
+    if (cpt == nb_lignes * nb_colonnes) {
             /* Fonction de fin*/
 }
 }
