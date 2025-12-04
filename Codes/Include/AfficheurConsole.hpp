@@ -9,7 +9,7 @@
 
 class AfficheurConsole : public Afficheurs {
 public:
-    void afficher(const Grille& g, int iterations) override;
+    void afficher(const Grille& g, int iterations, int tempsParIteration) override;
 };
 
 #endif

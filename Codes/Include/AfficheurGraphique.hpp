@@ -15,7 +15,7 @@ public:
     AfficheurGraphique(int windowSize = 800);
 
     // Fonction héritée : affiche la grille pour une itération
-    void afficher(const Grille& g, int iteration, int tempsParIteration);
+    void afficher(const Grille& g, int iteration, int tempsParIteration) override;
 
 private:
     int windowSize;

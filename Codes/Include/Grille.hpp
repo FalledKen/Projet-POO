@@ -10,7 +10,7 @@
 #include "Cellule.hpp"
 
 
-class Grille : public Observable {
+class Grille {
 private:
     int nb_lignes;
     int nb_colonnes;

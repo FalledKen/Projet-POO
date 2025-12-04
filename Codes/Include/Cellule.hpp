@@ -12,7 +12,7 @@
 class Grille;
 class Regles;
 
-class Cellule : public Observer {
+class Cellule {
 
 private:
     std::unique_ptr<Etat> etat_actuel;
