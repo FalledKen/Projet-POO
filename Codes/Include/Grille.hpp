@@ -20,7 +20,7 @@ private:
 public:
     Grille();
 
-    void initialisation(std::vector<std::vector<int>> matrice);
+    void initialisation(std::vector<std::vector<int>> matrice, Regles* regle);
 
     int getLignes() const;
     int getColonnes() const;

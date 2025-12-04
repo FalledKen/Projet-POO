@@ -16,7 +16,7 @@ Grille::Grille(){
     nb_colonnes = 0;
 }
 
-void Grille::initialisation(std::vector<std::vector<int>> matrice) {
+void Grille::initialisation(std::vector<std::vector<int>> matrice, Regle* regle) {
     // Initialisation des cellules
     nb_lignes = matrice.size();
     nb_colonnes = matrice[0].size();
@@ -29,10 +29,10 @@ void Grille::initialisation(std::vector<std::vector<int>> matrice) {
     for (int i = 0; i < nb_lignes; i++){
         for (int j = 0; j < nb_colonnes; j++){
             if (matrice[i][j] == 0){
-                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatMort>(), i, j, this, nullptr);
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatMort>(), i, j, this, regle);
             }
             else if (matrice[i][j] == 1){
-                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatVivant>(), i, j, this, nullptr);
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatVivant>(), i, j, this, regle);
             }
         }
     }
