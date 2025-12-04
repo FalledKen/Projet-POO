@@ -9,8 +9,8 @@
 
 void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIteration) {
 
-    const int hauteur = g.getHauteur();  // nombre de lignes
-    const int largeur = g.getLargeur();  // nombre de colonnes
+    const int hauteur = g.getLignes();  // nombre de lignes
+    const int largeur = g.getColonnes();  // nombre de colonnes
 
     // Création de la matrice 0/1
     std::vector<std::vector<int>> matrice(hauteur, std::vector<int>(largeur));
