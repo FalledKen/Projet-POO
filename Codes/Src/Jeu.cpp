@@ -44,8 +44,9 @@ Jeu::Jeu() {
 
 	std::cout <<"Entrez le nom du fichier : ";
 	std:: cin >> nom_fichier;
-	grille_du_jeu.initialisation(lire_fichier(nom_fichier);
+	grille_du_jeu.initialisation(lire_fichier(nom_fichier_seul);
 
+	std::cout
 }
 
 int Jeu::getIterations() const {
