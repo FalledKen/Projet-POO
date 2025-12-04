@@ -139,7 +139,7 @@ class TestsUnitaires {
 }
 
 
-TestsUnitaires ..> Jeu : teste
+TestsUnitaires ..> Jeu : "teste"
 
 
 
