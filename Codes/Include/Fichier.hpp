@@ -7,9 +7,13 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
-bool nouveau_fichier(const std::string& nom_fichier);
-bool ajout_dans_fichier(const std::string& nom_fichier);
-bool lire_fichier(const std::string& nom_fichier);
+class Fichier {
+public:
+    bool creer_dossier(const std::string& nom_fichier);
+    bool ecrire_fichier(const std::vector<std::vector<int>> &matrice, const std::string& nom_fichier, const int iteration);
+    std::vector<std::vector<int>> lire_fichier(const std::string& nom_fichier);
+};
 
 #endif
