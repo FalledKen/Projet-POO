@@ -24,6 +24,7 @@ class Afficheurs{
 }
 class AfficheurConsole {
     -Fichier ecriture
+    +AfficheurConsole(Fichier ecriture_) 
     +void afficher(const Grille& g, int iterations) override
 }
 class AfficheurGraphique {
@@ -60,7 +61,7 @@ class Grille {
     -int nb_colonnes
     -vector< vector< unique_ptr< Cellule>>> cellules
     +Grille()
-    +void initialisation(vector< vector< int>> matrice)
+    +void initialisation(vector< vector< int>> matrice, Regles* regle)
     +int getLignes() const
     +int getColonnes() const
     +Cellule& getCellule(int l, int c) const
@@ -102,10 +103,12 @@ class Etat {
     +virtual ~Etat()
 }
 class EtatVivant {
+    +EtatVivant()
     +bool valeur() const override
     +unique_ptr< Etat> cloner() const override
 }
 class EtatMort {
+    +EtatMort()
     +bool valeur() const override
     +unique_ptr< Etat> cloner() const override
 }
@@ -122,6 +125,7 @@ class Regles {
     +virtual unique_ptr< Etat> changementEtat(const Etat& etatCourant, int nbVoisines) = 0
 }
 class RegleJDLV {
+    +RegleJDLV()
     +unique_ptr< Etat> changementEtat(const Etat& etatCourant, int nbVoisines) override
 }
 Regles <|-- RegleJDLV
@@ -131,11 +135,12 @@ Regles .. Cellule : "utilise"
 
 
 class TestsUnitaires {
-    +testInitialisationGrille()
-    +testCompterVoisines()
-    +testEvolutionCellule()
-    +testLectureFichier()
-    +testEcritureFichier()
+    +TestsUnitaires()
+    +void testInitialisationGrille()
+    +void testCompterVoisines()
+    +void testEvolutionCellule()
+    +void testLectureFichier()
+    +void testEcritureFichier()
 }
 
 
