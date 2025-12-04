@@ -103,5 +103,6 @@ void Grille::actualiserGrille() {
     }
     if (cpt == nb_lignes * nb_colonnes) {
             /* Fonction de fin*/
+    }
 }
-}
+
