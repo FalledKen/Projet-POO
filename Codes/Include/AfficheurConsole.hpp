@@ -6,6 +6,8 @@
 #define AFFICHEURCONSOLE_HPP
 
 #include "Afficheurs.hpp"
+#include "Grille.hpp"
+#include "Regles.hpp"
 
 class AfficheurConsole : public Afficheurs {
 public:

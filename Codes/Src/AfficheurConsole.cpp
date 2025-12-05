@@ -20,7 +20,7 @@ void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIter
     for (int y = 0; y < hauteur; ++y) {
         for (int x = 0; x < largeur; ++x) {
 
-            const Cellule& c = g.getCellule(y, x);
+            Cellule& c = g.getCellule(y, x);
 
             bool vivante = c.estVivante();
 

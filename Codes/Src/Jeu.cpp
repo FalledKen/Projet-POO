@@ -51,7 +51,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
     // Saisie du mode d'affichage
     std::cout << "Choisissez le mode (0 = console, 1 = graphique) : ";
     while (true) {
-        if (std::cin >> mode && mode == 0 && mode == 1) {
+        if (std::cin >> mode && ( mode == 0 || mode == 1)) {
             break;
         }
 
@@ -63,7 +63,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
     // Saisie de  la grille torique
 	std::cout << "Voulez-vous une grille torique ? (0 = normale, 1 = torique) : ";
     while (true) {
-        if (std::cin >> est_torique && est_torique == 0 && est_torique == 1) {
+        if (std::cin >> est_torique && (est_torique == 0 || est_torique == 1)) {
             break;
         }
 

@@ -1,4 +1,4 @@
-#ifndef TESTS_UNITAIRES_HPP
+/*#ifndef TESTS_UNITAIRES_HPP
 #ifndef TESTS_UNITAIRES_HPP
 
 class TestsUnitaires{
@@ -11,3 +11,4 @@ class TestsUnitaires{
         void testEcritureFichier();
     
 #endif TESTS_UNITAIRES_HPP
+*/

@@ -1,3 +1,4 @@
+/*
 #include "TestsUnitaires.hpp"
 //rajouter des include si besoin
 
@@ -20,3 +21,4 @@ void TestsUnitaires::testLectureFichier(){
 
 void TestsUnitaires::testEcritureFichier(){
 }
+*/

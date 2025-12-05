@@ -6,9 +6,8 @@
 
 #include <vector>
 #include <memory>
-
-class Cellule;
-class Regles;
+#include "Cellule.hpp"
+#include "Regles.hpp"
 
 class Grille {
 private:

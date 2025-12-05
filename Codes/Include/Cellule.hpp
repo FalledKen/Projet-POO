@@ -7,10 +7,8 @@
 
 #include <memory>
 #include "Etat.hpp"
-
-
 class Grille;
-class Regles;
+#include "Regles.hpp"
 
 class Cellule {
 

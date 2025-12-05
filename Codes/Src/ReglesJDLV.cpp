@@ -2,7 +2,7 @@
 // Created by silic on 01/12/2025.
 //
 
-#include "RegleJDLV.hpp"
+#include "ReglesJDLV.hpp"
 
 RegleJDLV::RegleJDLV(){
 }
