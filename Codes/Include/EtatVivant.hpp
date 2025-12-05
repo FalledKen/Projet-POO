@@ -9,6 +9,7 @@
 
 class EtatVivant : public Etat {
 public:
+    EtatVivant();
     bool valeur() const override;
     std::unique_ptr<Etat> cloner() const override;
 };

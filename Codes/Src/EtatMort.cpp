@@ -4,6 +4,9 @@
 
 #include "EtatMort.hpp"
 
+EtatMort::EtatMort(){
+}
+
 bool EtatMort::valeur() const {
     return false;
 }
