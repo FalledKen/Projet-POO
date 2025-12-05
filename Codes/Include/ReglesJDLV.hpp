@@ -11,6 +11,7 @@
 
 class RegleJDLV : public Regles {
 public:
+    RegleJDLV();
     std::unique_ptr<Etat> changementEtat(const Etat& etatCourant, int nbVoisines) override;
 };
 

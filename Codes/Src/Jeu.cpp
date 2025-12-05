@@ -7,7 +7,7 @@
 #include "Etat.hpp"
 #include "EtatMort.hpp"
 #include "EtatVivant.hpp"
-#include "AfficheursConsole.hpp"
+#include "AfficheurConsole.hpp"
 #include "AfficheurGraphique.hpp"
 #include "Afficheurs"
 #include "Grille.hpp"
@@ -16,6 +16,7 @@
 #include "Fichier.hpp"
 
 Jeu::Jeu() {
+	grille = new Grille();
     // Saisie sécurisée du nombre d'itérations
     std::cout << "Entrez le nombre d'itérations : ";
     while (!(std::cin >> iterations) || iterations < 0) {
@@ -39,14 +40,17 @@ Jeu::Jeu() {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-
+	std::cout << "La grille est-elle torique ?") : ";
+    while (!(std::cin >> est_torique) || (est_torique != 0 && est_torique != 1)) {
+        std::cout << "Valeur Invalide. Entrez 0 pour la grille normale ou 1 pour la grille torique : ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyer la ligne
 
 	std::cout <<"Entrez le nom du fichier : ";
 	std:: cin >> nom_fichier;
-	grille_du_jeu.initialisation(lire_fichier(nom_fichier_seul);
-
-	std::cout
+	grille.initialisation(lire_fichier(nom_fichier_seul);
 }
 
 int Jeu::getIterations() const {
@@ -71,33 +75,21 @@ void Jeu::lancerSimulation() {
     std::cout << "Temps par itération (ms) : ";
     std::cin >> tempsParIteration;
 
-    // Initialisation de la grille (exemple : planeur 5x5)
-    std::vector<std::vector<int>> matrice = {
-        {0, 1, 0, 0, 0},
-        {0, 0, 1, 0, 0},
-        {1, 1, 1, 0, 0},
-        {0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0}
-    };
-
-    grille_du_jeu.initialisation(matrice);
-    regles_du_jeu = new RegleJDLV();
-
+   Fichier(file);
+	grille.initialisation(file.lire_fichier(nom_fichier));
     if (mode == 0) {
         lancerModeConsole();
     } else {
         lancerModeGraphique();
     }
-
-    delete regles_du_jeu;
 }
 
 void Jeu::lancerModeConsole() {
     AfficheurConsole afficheur;
     for (int i = 0; i < iterations; ++i) {
-        afficheur.afficher(grille_du_jeu, i);
-        grille_du_jeu.grilleSuivante();
-        grille_du_jeu.actualiserGrille();
+        afficheur.afficher(grille, i);
+        grille.grilleSuivante();
+        grille.actualiserGrille();
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
     }
 }
@@ -105,7 +97,7 @@ void Jeu::lancerModeConsole() {
 void Jeu::lancerModeGraphique() {
     AfficheurGraphique afficheurGraphique;
     for (int i = 0; i < iterations; ++i) {
-        afficheurGraphique.afficher(grille_du_jeu, i, tempsParIteration);
+        afficheurGraphique.afficher(grille, i, tempsParIteration);
         Grille.grilleSuivante();
         Grille.actualiserGrille();
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));

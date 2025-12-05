@@ -4,6 +4,9 @@
 
 #include "EtatVivant.hpp"
 
+EtatVivant::EtatVivant(){
+}
+
 bool EtatVivant::valeur() const {
     return true;
 }
