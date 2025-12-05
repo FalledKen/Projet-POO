@@ -20,7 +20,21 @@
 #include "ReglesJDLV.hpp"
 #include "Fichier.hpp"
 
-Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
+Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {}
+
+int Jeu::getIterations() const {
+    return iterations;
+}
+
+int Jeu::getTempsParIteration() const {
+    return TempsParIteration;
+}
+
+int Jeu::getMode() const {
+   return mode;
+}
+
+void Jeu::lancerSimulation() {
     Fichier f;
 
     // Saisie du nombre d'itérations
@@ -39,7 +53,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
     // Saisie du temps par itération (en millisecondes)
     std::cout << "Entrez le temps par itération (en millisecondes) : ";
     while (true) {
-        if (std::cin >> tempsParIteration && tempsParIteration >= 0) {
+        if (std::cin >> TempsParIteration && TempsParIteration >= 0) {
             break;
         }
 
@@ -51,7 +65,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
     // Saisie du mode d'affichage
     std::cout << "Choisissez le mode (0 = console, 1 = graphique) : ";
     while (true) {
-        if (std::cin >> mode && ( mode == 0 || mode == 1)) {
+        if (std::cin >> mode && (mode == 0 || mode == 1)) {
             break;
         }
 
@@ -78,28 +92,6 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
     std::string nom_fichier;
 	std::cin >> nom_fichier;
 	g.initialisation(f.lire_fichier(nom_fichier), r.get(), est_torique);
-}
-
-int Jeu::getIterations() const {
-    return iterations;
-}
-
-int Jeu::getTempsParIteration() const {
-    return tempsParIteration;
-}
-
-int Jeu::getMode() const {
-   return mode;
-}
-
-void Jeu::lancerSimulation() {
-    // Demander le nombre d'itérations à l'utilisateur
-    std::cout << "Nombre d'itérations : ";
-    std::cin >> iterations;
-
-    // Demander le temps par itération (en ms)
-    std::cout << "Temps par itération (ms) : ";
-    std::cin >> tempsParIteration;
 
     if (mode == 0) {
         lancerModeConsole();
@@ -111,19 +103,19 @@ void Jeu::lancerSimulation() {
 void Jeu::lancerModeConsole() {
     AfficheurConsole console;
     for (int i = 0; i < iterations; ++i) {
-        console.afficher(g, i, tempsParIteration);
+        console.afficher(g, i, TempsParIteration);
         g.grilleSuivante();
         g.actualiserGrille();
-        std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
+        std::this_thread::sleep_for(std::chrono::milliseconds(TempsParIteration));
     }
 }
 
 void Jeu::lancerModeGraphique() {
     AfficheurGraphique graphique;
     for (int i = 0; i < iterations; ++i) {
-        graphique.afficher(g, i, tempsParIteration);
+        graphique.afficher(g, i, TempsParIteration);
         g.grilleSuivante();
         g.actualiserGrille();
-        std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
+        std::this_thread::sleep_for(std::chrono::milliseconds(TempsParIteration));
     }
 }

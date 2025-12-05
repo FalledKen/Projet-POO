@@ -15,7 +15,7 @@ private:
     std::unique_ptr<Regles> r;
 
     int iterations;
-    int tempsParIteration;
+    int TempsParIteration;
     int mode;
     bool est_torique;
 
