@@ -7,6 +7,8 @@
 #include <chrono>
 #include <vector>
 
+AfficheurConsole::AfficheurConsole(Fichier ecriture_):ecriture(ecriture_){}
+
 void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIteration) {
 
     const int hauteur = g.getLignes();  // nombre de lignes

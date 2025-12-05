@@ -28,6 +28,9 @@ class AfficheurConsole {
     +void afficher(const Grille& g, int iterations) override
 }
 class AfficheurGraphique {
+    -int windowSize;
+    -sf::RenderWindow window;
+    +AfficheurGraphique(int windowSize = 800)
     +void afficher(const Grille& g, int iterations) override
 }
 Jeu o-- Afficheurs
@@ -42,7 +45,7 @@ class Fichier {
     +Fichier()
     +void demanderNomFichier()
     +void lireFichier()
-    +const vector<vector<int>>& getMatrice() const
+    +vector< vector< int>>& getMatrice() const
     +int getLignes() const 
     +int getColonnes() const
     +void creerDossierOut()
@@ -145,12 +148,3 @@ class TestsUnitaires {
 
 
 TestsUnitaires ..> Jeu : "teste"
-
-
-
-
-
-
-
-
-

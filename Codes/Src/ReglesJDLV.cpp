@@ -4,6 +4,9 @@
 
 #include "RegleJDLV.hpp"
 
+RegleJDLV::RegleJDLV(){
+}
+
 std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbVoisines) override {
 
     if (etatCourant.valeur() == 1) {
