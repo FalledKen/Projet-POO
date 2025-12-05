@@ -7,7 +7,7 @@
 RegleJDLV::RegleJDLV(){
 }
 
-std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbVoisines) override {
+std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbVoisines) {
 
     if (etatCourant.valeur() == 1) {
         if (nbVoisines == 2 || nbVoisines == 3){
