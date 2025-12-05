@@ -72,3 +72,24 @@ std::vector<std::vector<int>> Fichier::lire_fichier(const std::string& nom_fichi
 
     return matrice;
 }
+
+std::vector<std::vector<int>> Fichier::convertir_matrice_pointeurs(
+        const std::vector<std::vector<int*>>& matrice_ptr)
+{
+    std::vector<std::vector<int>> matrice;
+    matrice.resize(matrice_ptr.size());
+
+    for (size_t i = 0; i < matrice_ptr.size(); i++) {
+        matrice[i].resize(matrice_ptr[i].size());
+
+        for (size_t j = 0; j < matrice_ptr[i].size(); j++) {
+            if (matrice_ptr[i][j] != nullptr) {
+                matrice[i][j] = *(matrice_ptr[i][j]);  // copie de la valeur
+            } else {
+                matrice[i][j] = 0;  // valeur par défaut si pointeur nul
+            }
+        }
+    }
+
+    return matrice;
+}
