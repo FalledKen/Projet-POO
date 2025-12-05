@@ -9,7 +9,7 @@
 #include "EtatVivant.hpp"
 #include "AfficheurConsole.hpp"
 #include "AfficheurGraphique.hpp"
-#include "Afficheurs"
+#include "Afficheurs.hpp"
 #include "Grille.hpp"
 #include "Regles.hpp"
 #include "ReglesJDLV.hpp"
