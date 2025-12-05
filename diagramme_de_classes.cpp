@@ -91,7 +91,7 @@ class Cellule {
     +void actualiserEtatSuivant()
     +bool estVivante() const
     +Etat& getEtatActuel() const
-    +Etat& getEtatSuivant() const
+    +Etat* getEtatSuivant() const
 }
 Cellule o-- Etat : "possède"
 
@@ -149,3 +149,12 @@ class TestsUnitaires {
 
 
 TestsUnitaires ..> Jeu : "teste"
+
+
+
+
+
+
+
+
+
