@@ -20,18 +20,18 @@ Jeu ..> Regles : "utilise"
 
 class Afficheurs{
     <<abstract>>
-    +virtual void afficher(const Grille& g, int iterations) 
+    +virtual void afficher(const Grille& g, int iterations, int tempsParIteration) 
 }
 class AfficheurConsole {
     -Fichier ecriture
     +AfficheurConsole(Fichier ecriture_) 
-    +void afficher(const Grille& g, int iterations) override
+    +void afficher(const Grille& g, int iterations, int tempsParIteration) override
 }
 class AfficheurGraphique {
     -int windowSize;
     -sf::RenderWindow window;
     +AfficheurGraphique(int windowSize = 800)
-    +void afficher(const Grille& g, int iterations) override
+    +void afficher(const Grille& g, int iterations, int tempsParIteration) override
 }
 Jeu o-- Afficheurs
 Afficheurs <|-- AfficheurGraphique
