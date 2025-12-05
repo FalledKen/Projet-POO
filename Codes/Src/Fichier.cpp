@@ -56,16 +56,12 @@ std::vector<std::vector<int>> Fichier::lire_fichier(const std::string& nom_fichi
     int nb_ligne, nb_colonnes;
     fichier >> nb_ligne >> nb_colonnes;
 
-    //std::cout << "Lignes = " << nb_ligne << ", Colonnes = " << nb_colonnes << "\n";
-
     std::vector<std::vector<int>> matrice(nb_ligne, std::vector<int>(nb_colonnes));
 
     for (int i = 0; i < nb_ligne; i++) {
         for (int j = 0; j < nb_colonnes; j++) {
             fichier >> matrice[i][j];
-            //std::cout << matrice[i][j] << " ";
         }
-        //std::cout << "\n";
     }
 
     fichier.close();

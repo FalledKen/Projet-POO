@@ -5,13 +5,16 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "Include/Fichier.hpp"
-#include "Include/Jeu.hpp"
+#include "Fichier.hpp"
+#include "Jeu.hpp"
+#include "TestsUnitaires.hpp"
 
 int main() {
-    Jeu jeu;
-    jeu.lancerSimulation();
-
+    //Jeu jeu;
+    //jeu.lancerSimulation();
+    TestsUnitaires t;
+    //t.testLectureFichier();
+    t.testEcritureFichier();
     // =====[ FICHIER ]=====
     /*Fichier file;
 

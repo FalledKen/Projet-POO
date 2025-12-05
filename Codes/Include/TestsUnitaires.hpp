@@ -1,5 +1,5 @@
-/*#ifndef TESTS_UNITAIRES_HPP
 #ifndef TESTS_UNITAIRES_HPP
+#define TESTS_UNITAIRES_HPP
 
 class TestsUnitaires{
     public :
@@ -9,6 +9,5 @@ class TestsUnitaires{
         void testEvolutionCellule();
         void testLectureFichier();
         void testEcritureFichier();
-    
-#endif TESTS_UNITAIRES_HPP
-*/
+};
+#endif
