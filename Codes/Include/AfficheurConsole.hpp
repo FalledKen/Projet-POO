@@ -8,10 +8,7 @@
 #include "Afficheurs.hpp"
 
 class AfficheurConsole : public Afficheurs {
-private:
-    Fichier ecriture;
 public:
-    AfficheurConsole(Fichier ecriture_);
     void afficher(const Grille& g, int iterations, int tempsParIteration) override;
 };
 

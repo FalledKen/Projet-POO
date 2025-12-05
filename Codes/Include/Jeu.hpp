@@ -11,12 +11,13 @@
 
 class Jeu {
 private:
-    Grille grille_du_jeu;
-    Regles* regles_du_jeu;
+    Grille g;
+    std::unique_ptr<Regles> r;
 
     int iterations;
     int tempsParIteration;
     int mode;
+    bool est_torique;
 
     void lancerModeConsole();
     void lancerModeGraphique();
@@ -24,9 +25,9 @@ private:
 public:
     Jeu();
     void lancerSimulation();
-    int getIterations();
-    int getTempsParIteration();
-    int getMode();
+    int getIterations() const;
+    int getTempsParIteration() const;
+    int getMode() const;
 
 };
 

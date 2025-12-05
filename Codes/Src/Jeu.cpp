@@ -2,6 +2,11 @@
 // Created by silic on 01/12/2025.
 //
 
+#include <iostream>
+#include <limits>
+#include <thread>
+#include <chrono>
+
 #include "Cellule.hpp"
 #include "Jeu.hpp"
 #include "Etat.hpp"
@@ -15,46 +20,68 @@
 #include "ReglesJDLV.hpp"
 #include "Fichier.hpp"
 
-Jeu::Jeu() {
-	grille = new Grille();
-    // Saisie sécurisée du nombre d'itérations
+Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()) {
+    Fichier f;
+
+    // Saisie du nombre d'itérations
     std::cout << "Entrez le nombre d'itérations : ";
-    while (!(std::cin >> iterations) || iterations < 0) {
+    while (true) {
+        if (std::cin >> iterations && iterations >= 0) {
+            break; // entrée valide
+        }
+
         std::cout << "Valeur invalide. Veuillez entrer un entier >= 0 : ";
-        std::cin.clear();
+        std::cin.clear(); 
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    // Saisie sécurisée du temps par itération (en millisecondes)
+
+    // Saisie du temps par itération (en millisecondes)
     std::cout << "Entrez le temps par itération (en millisecondes) : ";
-    while (!(std::cin >> tempsParIteration) || tempsParIteration < 0) {
+    while (true) {
+        if (std::cin >> tempsParIteration && tempsParIteration >= 0) {
+            break;
+        }
+
         std::cout << "Valeur invalide. Veuillez entrer un entier >= 0 : ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    // Saisie sécurisée du mode d'affichage
+    // Saisie du mode d'affichage
     std::cout << "Choisissez le mode (0 = console, 1 = graphique) : ";
-    while (!(std::cin >> mode) || (mode != 0 && mode != 1)) {
+    while (true) {
+        if (std::cin >> mode && mode == 0 && mode == 1) {
+            break;
+        }
+
         std::cout << "Mode invalide. Entrez 0 pour console ou 1 pour graphique : ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-	std::cout << "La grille est-elle torique ?") : ";
-    while (!(std::cin >> est_torique) || (est_torique != 0 && est_torique != 1)) {
+
+    // Saisie de  la grille torique
+	std::cout << "Voulez-vous une grille torique ? (0 = normale, 1 = torique) : ";
+    while (true) {
+        if (std::cin >> est_torique && est_torique == 0 && est_torique == 1) {
+            break;
+        }
+
         std::cout << "Valeur Invalide. Entrez 0 pour la grille normale ou 1 pour la grille torique : ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyer la ligne
 
+
 	std::cout <<"Entrez le nom du fichier : ";
-	std:: cin >> nom_fichier;
-	grille.initialisation(lire_fichier(nom_fichier_seul);
+    std::string nom_fichier;
+	std::cin >> nom_fichier;
+	g.initialisation(f.lire_fichier(nom_fichier), r.get(), est_torique);
 }
 
 int Jeu::getIterations() const {
-return iterations;
+    return iterations;
 }
 
 int Jeu::getTempsParIteration() const {
@@ -62,7 +89,6 @@ int Jeu::getTempsParIteration() const {
 }
 
 int Jeu::getMode() const {
-
    return mode;
 }
 
@@ -75,8 +101,6 @@ void Jeu::lancerSimulation() {
     std::cout << "Temps par itération (ms) : ";
     std::cin >> tempsParIteration;
 
-   Fichier(file);
-	grille.initialisation(file.lire_fichier(nom_fichier));
     if (mode == 0) {
         lancerModeConsole();
     } else {
@@ -85,21 +109,21 @@ void Jeu::lancerSimulation() {
 }
 
 void Jeu::lancerModeConsole() {
-    AfficheurConsole afficheur;
+    AfficheurConsole console;
     for (int i = 0; i < iterations; ++i) {
-        afficheur.afficher(grille, i);
-        grille.grilleSuivante();
-        grille.actualiserGrille();
+        console.afficher(g, i, tempsParIteration);
+        g.grilleSuivante();
+        g.actualiserGrille();
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
     }
 }
 
 void Jeu::lancerModeGraphique() {
-    AfficheurGraphique afficheurGraphique;
+    AfficheurGraphique graphique;
     for (int i = 0; i < iterations; ++i) {
-        afficheurGraphique.afficher(grille, i, tempsParIteration);
-        Grille.grilleSuivante();
-        Grille.actualiserGrille();
+        graphique.afficher(g, i, tempsParIteration);
+        g.grilleSuivante();
+        g.actualiserGrille();
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
     }
 }
