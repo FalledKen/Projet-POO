@@ -39,7 +39,7 @@ Afficheurs <|-- AfficheurConsole
 
 
 class Fichier {
-    -string nom
+    -string entree
     -string dossier_out
     -vector< vector< int>> matrice
     +Fichier()
