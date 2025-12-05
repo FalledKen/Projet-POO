@@ -7,7 +7,7 @@
 #include "Etat.hpp"
 #include "EtatMort.hpp"
 #include "EtatVivant.hpp"
-#include "AfficheursConsole.hpp"
+#include "AfficheurConsole.hpp"
 #include "AfficheurGraphique.hpp"
 #include "Afficheurs"
 #include "Grille.hpp"
