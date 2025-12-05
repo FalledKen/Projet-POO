@@ -13,7 +13,7 @@ int main() {
     jeu.lancerSimulation();
 
     // =====[ FICHIER ]=====
-    Fichier file;
+    /*Fichier file;
 
     const std::string nom_fichier = "grille";
 
@@ -23,7 +23,7 @@ int main() {
 
     for (int i = 0; i < 10; i++) {
         file.ecrire_fichier(matrice, nom_fichier, i);
-    }
+    }*/
 
     return 0;
 }

@@ -8,12 +8,14 @@
 #include "Grille.hpp"
 #include "Regles.hpp"
 #include "Afficheurs.hpp"
+#include <string>
 
 class Jeu {
 private:
     Grille g;
     std::unique_ptr<Regles> r;
-
+    
+    std::string nom_fichier;
     int iterations;
     int TempsParIteration;
     int mode;

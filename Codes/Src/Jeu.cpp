@@ -89,7 +89,6 @@ void Jeu::lancerSimulation() {
 
 
 	std::cout <<"Entrez le nom du fichier : ";
-    std::string nom_fichier;
 	std::cin >> nom_fichier;
 	g.initialisation(f.lire_fichier(nom_fichier), r.get(), est_torique);
 
@@ -102,10 +101,13 @@ void Jeu::lancerSimulation() {
 
 void Jeu::lancerModeConsole() {
     AfficheurConsole console;
+    Fichier file;
     for (int i = 0; i < iterations; ++i) {
+        file.creer_dossier(nom_fichier);
         console.afficher(g, i, TempsParIteration);
         g.grilleSuivante();
         g.actualiserGrille();
+        file.ecrire_fichier(matrice, nom_fichier, i);
         std::this_thread::sleep_for(std::chrono::milliseconds(TempsParIteration));
     }
 }

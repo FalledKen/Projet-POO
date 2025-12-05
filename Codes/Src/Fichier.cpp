@@ -13,7 +13,7 @@ bool Fichier::creer_dossier(const std::string& nom_fichier) {
     std::filesystem::path dir = nom_dossier;
 
     if (std::filesystem::create_directory(dir)) {
-        std::cout << "Dossier créé avec succès.\n";
+        std::cout << dir << " créé avec succès.\n";
         return false;
     }
 
