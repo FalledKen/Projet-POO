@@ -45,7 +45,7 @@ class Fichier {
     +Fichier()
     +void demanderNomFichier()
     +void lireFichier()
-    +vector< vector< int>>& getMatrice() const
+    +const vector<vector<int>>& getMatrice() const
     +int getLignes() const 
     +int getColonnes() const
     +void creerDossierOut()
@@ -64,7 +64,7 @@ class Grille {
     -int nb_colonnes
     -vector< vector< unique_ptr< Cellule>>> cellules
     +Grille()
-    +void initialisation(vector< vector< int>> matrice, Regles* regle)
+    +void initialisation(const vector< vector< int>>& matrice, Regles* regle)
     +int getLignes() const
     +int getColonnes() const
     +Cellule& getCellule(int l, int c) const
@@ -91,6 +91,7 @@ class Cellule {
     +void actualiserEtatSuivant()
     +bool estVivante() const
     +Etat& getEtatActuel() const
+    +Etat& getEtatSuivant() const
 }
 Cellule o-- Etat : "possède"
 
