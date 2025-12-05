@@ -19,10 +19,12 @@ Jeu ..> Regles : "utilise"
 
 
 class Afficheurs{
+    <<abstract>>
     +virtual void afficher(const Grille& g, int iterations) 
 }
 class AfficheurConsole {
     -Fichier ecriture
+    +AfficheurConsole(Fichier ecriture_) 
     +void afficher(const Grille& g, int iterations) override
 }
 class AfficheurGraphique {
@@ -50,16 +52,7 @@ Grille ..> Fichier
 AfficheurConsole ..> Fichier
 
 
-class Observer {
-    <<interface>>
-    +virtual void update() = 0
-}
-class Observable {
-    <<interface>>
-    -vector< Observer*> observateurs
-    +virtual void ajouterObservateur(Observer* o)
-    +virtual void notifierNouvelleGrille()
-}
+
 
 
 
@@ -68,18 +61,15 @@ class Grille {
     -int nb_colonnes
     -vector< vector< unique_ptr< Cellule>>> cellules
     +Grille()
-    +void initialisation(vector< vector< int>> matrice)
+    +void initialisation(vector< vector< int>> matrice, Regles* regle)
     +int getLignes() const
     +int getColonnes() const
     +Cellule& getCellule(int l, int c) const
     +int compterVoisinesVivantes(int l, int c) const
-    +void ajouterObservateur(Observer* o)
-    +void notifierNouvelleGrille() override
     +void grilleSuivante()
     +void actualiserGrille()
 }
 Grille o-- Cellule : "contient"
-Grille --|> Observable
 Regles .. Grille : "utilise"
 
 
@@ -94,14 +84,13 @@ class Cellule {
     -Grille* grille
     -Regles* regles
     +Cellule(unique_ptr< Etat> etat_initial, int l, int c, Grille* g, Regles* r)
-    +void update() override
     +void calculerEtatSuivant()
     +void actualiserEtatSuivant()
     +bool estVivante() const
     +Etat& getEtatActuel() const
 }
 Cellule o-- Etat : "possède"
-Cellule --|> Observer
+
 
 
 
@@ -114,10 +103,12 @@ class Etat {
     +virtual ~Etat()
 }
 class EtatVivant {
+    +EtatVivant()
     +bool valeur() const override
     +unique_ptr< Etat> cloner() const override
 }
 class EtatMort {
+    +EtatMort()
     +bool valeur() const override
     +unique_ptr< Etat> cloner() const override
 }
@@ -134,6 +125,7 @@ class Regles {
     +virtual unique_ptr< Etat> changementEtat(const Etat& etatCourant, int nbVoisines) = 0
 }
 class RegleJDLV {
+    +RegleJDLV()
     +unique_ptr< Etat> changementEtat(const Etat& etatCourant, int nbVoisines) override
 }
 Regles <|-- RegleJDLV
@@ -142,6 +134,17 @@ Regles .. Cellule : "utilise"
 
 
 
+class TestsUnitaires {
+    +TestsUnitaires()
+    +void testInitialisationGrille()
+    +void testCompterVoisines()
+    +void testEvolutionCellule()
+    +void testLectureFichier()
+    +void testEcritureFichier()
+}
+
+
+TestsUnitaires ..> Jeu : "teste"
 
 
 
