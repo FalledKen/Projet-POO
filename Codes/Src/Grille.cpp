@@ -108,3 +108,15 @@ void Grille::actualiserGrille() {
         }
     }
 }
+
+std::vector<std::vector<int>> Grille::toIntMatrix() const {
+    std::vector<std::vector<int>> matrice(nb_lignes, std::vector<int>(nb_colonnes));
+
+    for (int i = 0; i < nb_lignes; i++) {
+        for (int j = 0; j < nb_colonnes; j++) {
+            matrice[i][j] = cellules[i][j]->estVivante() ? 1 : 0;
+        }
+    }
+
+    return matrice;
+}

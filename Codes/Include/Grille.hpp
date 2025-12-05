@@ -29,6 +29,8 @@ public:
 
     int compterVoisinesVivantes(int l, int c) const;
 
+    std::vector<std::vector<int>> toIntMatrix() const;
+
     void grilleSuivante();
     void actualiserGrille();
 };

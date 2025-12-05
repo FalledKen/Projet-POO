@@ -107,7 +107,7 @@ void Jeu::lancerModeConsole() {
         console.afficher(g, i, TempsParIteration);
         g.grilleSuivante();
         g.actualiserGrille();
-        file.ecrire_fichier(matrice, nom_fichier, i);
+        file.ecrire_fichier(g.toIntMatrix(), nom_fichier, i);
         std::this_thread::sleep_for(std::chrono::milliseconds(TempsParIteration));
     }
 }
