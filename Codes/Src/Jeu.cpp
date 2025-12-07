@@ -119,7 +119,6 @@ void Jeu::lancerModeConsole() {
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
     }
 	std::cout << "Dossier de sortie créé avec succès\n" << std::endl;
-
 }
 
 

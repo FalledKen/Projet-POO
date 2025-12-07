@@ -63,6 +63,7 @@ void Fichier::creerDossierOut() {
 }
 
 
+
 //pour créer un fichier de sortie pour l'iteration donnée
 void Fichier::creerFichierOut(int iteration, const Grille& g) {
     std::string nom_fichier = dossier_out + "/iteration_" + std::to_string(iteration) + ".txt";

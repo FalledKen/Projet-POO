@@ -31,3 +31,4 @@ void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIter
     // INTERVALLE CHOSI PAR L'UTILISATEUR
     std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
 }
+
