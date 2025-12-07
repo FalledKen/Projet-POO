@@ -10,18 +10,18 @@ AfficheurConsole::AfficheurConsole(Fichier& ecriture_) : ecriture(ecriture_) {}
 void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIteration) {
 
     // AFFICHAGE DANS LA CONSOLE
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
+	#ifdef _WIN32
+    	system("cls");
+	#else
+    	system("clear");
+	#endif
     std::cout << "Itération " << iteration << " :\n";
     for (int i = 0; i < g.getLignes(); ++i) {
         for (int j = 0; j < g.getColonnes(); ++j) {
-            std::cout << (g.getCellule(i, j).estVivante() ? "□" : "■");
+            std::cout << (g.getCellule(i, j).estVivante() ? "▓▓" : "░░");
             //std::cout << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 

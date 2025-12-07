@@ -25,7 +25,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()), iterations(0), tempsParItera
     
     // demander grille toriuqe ou pas
     bool est_torique = false;
-    std::cout << "Grille torique ? (0 = Non ; 1 = Oui) : ";
+    std::cout << "Grille torique ? (NON = 0 ; OUI = 1) : ";
     while (true) {
         if (std::cin >> est_torique && (est_torique == 0 || est_torique == 1))
             break;
@@ -42,10 +42,10 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()), iterations(0), tempsParItera
     // demander le nombre d'itérations
     std::cout << "Nombre d'itérations : ";
     while (true) {
-        if (std::cin >> iterations && iterations >= 0)
+        if (std::cin >> iterations && iterations >= 0){
             iterations += 1;
             break;
-
+		}
         std::cout << "INVALIDE !!! --> Entrez un nombre supérieur à 0 : ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -63,7 +63,7 @@ Jeu::Jeu() : g(), r(std::make_unique<RegleJDLV>()), iterations(0), tempsParItera
     }
 
     /// choix du mode
-    std::cout << "Mode ? (0 = Mode Console ; 1 = Mode Graphique) : ";
+    std::cout << "Mode ? (MODE CONSOLE = 0 ; MODE GRAPHIQUE = 1) : ";
     while (true) {
         if (std::cin >> mode && (mode == 0 || mode == 1))
             break;
@@ -118,6 +118,8 @@ void Jeu::lancerModeConsole() {
         g.actualiserGrille();
         std::this_thread::sleep_for(std::chrono::milliseconds(tempsParIteration));
     }
+	std::cout << "Dossier de sortie créé avec succès\n" << std::endl;
+
 }
 
 

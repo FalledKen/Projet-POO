@@ -59,6 +59,7 @@ void Fichier::creerDossierOut() {
         std::filesystem::remove_all(dossier_out);
     }
     std::filesystem::create_directory(dossier_out);
+	std::cout << "Dossier de sortie avec succès" << std::endl;
 }
 
 
