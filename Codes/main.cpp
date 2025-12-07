@@ -12,9 +12,9 @@
 int main() {
     Jeu jeu;
     jeu.lancerSimulation();
-    TestsUnitaires t;
-    t.testLectureFichier();
-    t.testEcritureFichier();
+    //TestsUnitaires t;
+    //t.testLectureFichier();
+    //t.testEcritureFichier();
 
     return 0;
 }

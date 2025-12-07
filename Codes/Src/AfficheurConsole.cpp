@@ -18,7 +18,7 @@ void AfficheurConsole::afficher(const Grille& g, int iteration, int tempsParIter
     std::cout << "Itération " << iteration << " :\n";
     for (int i = 0; i < g.getLignes(); ++i) {
         for (int j = 0; j < g.getColonnes(); ++j) {
-            std::cout << (g.getCellule(i, j).estVivante() ? "🟦" : "⬛");
+            std::cout << (g.getCellule(i, j).estVivante() ? "□" : "■");
             //std::cout << ' ';
         }
         std::cout << '\n';

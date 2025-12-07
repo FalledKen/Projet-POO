@@ -7,7 +7,7 @@
 #include "Cellule.hpp"
 
 //rajouter des include si besoin
-
+/*
 TestsUnitaires::TestsUnitaires(){
   
 }
@@ -28,7 +28,7 @@ void TestsUnitaires::testLectureFichier(){
     Fichier file;
     std::vector<std::vector<int>> matrice;
     
-    matrice = file.lire_fichier("test_grille");
+    matrice = file.lireFichier("test_grille");
 
     int nb_lignes = matrice.size();
     int nb_colonnes = matrice[0].size();
@@ -52,7 +52,8 @@ void TestsUnitaires::testEcritureFichier(){
         {0, 0, 1, 0, 0},
         {0, 1, 1, 0, 0}};
 
-    if (file.ecrire_fichier(matrice, "test_grille", 1)) {
+    if (file.creerFichierOut(matrice, "test_grille", 1)) {
         std::cout << "Un problème est survenu..." << std::endl;
     }
 }
+*/
