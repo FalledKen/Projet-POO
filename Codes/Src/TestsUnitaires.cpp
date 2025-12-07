@@ -9,18 +9,16 @@ TestsUnitaires::TestsUnitaires(const std::string& nom, const std::vector<std::ve
 bool TestsUnitaires::tester() {
 
     RegleJDLV regle;
-
-    // On crée une grille locale — PAS DE COPIE !
     Grille g;
     g.initialisation(matrice_depart, &regle);
 
-    // Exécuter la simulation
+
     for (int i = 0; i < iterations; ++i) {
         g.grilleSuivante();
         g.actualiserGrille();
     }
 
-    // Extraire la grille finale sous forme de matrice
+
     std::vector<std::vector<int>> resultat(
         g.getLignes(),
         std::vector<int>(g.getColonnes(), 0)
@@ -32,10 +30,10 @@ bool TestsUnitaires::tester() {
         }
     }
 
-    // Comparaison
+
     bool succes = (resultat == matrice_attendue);
 
-    // Écriture du fichier résultat
+
     std::ofstream fichier(nom_test + "_test_result.txt");
 
     fichier << "Grille de depart :\n";
