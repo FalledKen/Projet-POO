@@ -1,13 +1,7 @@
-//
-// Created by silic on 01/12/2025.
-//
-
-#ifndef REGLESJDLV_HPP
-#define REGLESJDLV_HPP
+#ifndef REGLEJDLV_HPP
+#define REGLEJDLV_HPP
 
 #include "Regles.hpp"
-#include "EtatVivant.hpp"
-#include "EtatMort.hpp"
 
 class RegleJDLV : public Regles {
 public:

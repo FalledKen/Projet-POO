@@ -1,7 +1,3 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #include "Grille.hpp"
 #include "Cellule.hpp"
 #include "EtatVivant.hpp"
@@ -12,14 +8,16 @@
 #include <vector>
 #include <stdexcept>
 
-Grille::Grille()
-    : nb_lignes(0), nb_colonnes(0), estTorique(false) {}
+Grille::Grille() : nb_lignes(0), nb_colonnes(0), est_torique(false) {}
 
-void Grille::initialisation(std::vector<std::vector<int>> matrice,
-                            Regles* regles,
-                            bool estTorique) 
-{
-    this->estTorique = estTorique;
+void Grille::setTorique(bool t){
+    est_torique = t;
+}
+
+void Grille::initialisation(const std::vector<std::vector<int>>& matrice, Regles* regle) {
+    if (matrice.empty() || matrice[0].empty()) {
+        throw std::invalid_argument("Matrice vide !");
+    }
 
     nb_lignes = matrice.size();
     nb_colonnes = matrice[0].size();
@@ -29,18 +27,12 @@ void Grille::initialisation(std::vector<std::vector<int>> matrice,
         cellules[i].resize(nb_colonnes);
     }
 
-    for (int i = 0; i < nb_lignes; i++) {
-        for (int j = 0; j < nb_colonnes; j++) {
-
+    for (int i = 0; i < nb_lignes; ++i) {
+        for (int j = 0; j < nb_colonnes; ++j) {
             if (matrice[i][j] == 0) {
-                cellules[i][j] = std::make_unique<Cellule>(
-                    std::make_unique<EtatMort>(), i, j, this, regles
-                );
-            } 
-            else {
-                cellules[i][j] = std::make_unique<Cellule>(
-                    std::make_unique<EtatVivant>(), i, j, this, regles
-                );
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatMort>(), i, j, this, regle);
+            } else {
+                cellules[i][j] = std::make_unique<Cellule>(std::make_unique<EtatVivant>(), i, j, this, regle);
             }
         }
     }
@@ -63,60 +55,39 @@ Cellule& Grille::getCellule(int l, int c) const {
 
 int Grille::compterVoisinesVivantes(int l, int c) const {
     int compteur = 0;
-
     for (int dl = -1; dl <= 1; ++dl) {
         for (int dc = -1; dc <= 1; ++dc) {
-
-            if (dl == 0 && dc == 0)
-                continue;
+            if (dl == 0 && dc == 0) continue;
 
             int nl = l + dl;
             int nc = c + dc;
 
-            if (estTorique) {
-                // Wrap torique
-                nl = (nl + nb_lignes) % nb_lignes;
-                nc = (nc + nb_colonnes) % nb_colonnes;
-            } 
-            else {
-                // Hors-bord → on ignore
-                if (nl < 0 || nl >= nb_lignes || nc < 0 || nc >= nb_colonnes)
-                    continue;
-            }
-
-            if (cellules[nl][nc]->estVivante()) {
-                compteur++;
+            if (est_torique) {
+                int nl_t = (nl + nb_lignes) % nb_lignes;
+                int nc_t = (nc + nb_colonnes) % nb_colonnes;
+                if (cellules[nl_t][nc_t]->estVivante()) compteur++;
+            } else {
+                if (nl >= 0 && nl < nb_lignes && nc >= 0 && nc < nb_colonnes) {
+                    if (cellules[nl][nc]->estVivante()) compteur++;
+                }
             }
         }
     }
-
     return compteur;
 }
 
 void Grille::grilleSuivante() {
-    for (int l = 0; l < nb_lignes; ++l) {
-        for (int c = 0; c < nb_colonnes; ++c) {
-            cellules[l][c]->calculerEtatSuivant();
+    for (int i = 0; i < nb_lignes; ++i) {
+        for (int j = 0; j < nb_colonnes; ++j) {
+            cellules[i][j]->calculerEtatSuivant();
         }
     }
 }
 
 void Grille::actualiserGrille() {
-    for (int l = 0; l < nb_lignes; ++l) {
-        for (int c = 0; c < nb_colonnes; ++c) {
-            cellules[l][c]->actualiserEtatSuivant();
+    for (int i = 0; i < nb_lignes; ++i) {
+        for (int j = 0; j < nb_colonnes; ++j) {
+            cellules[i][j]->actualiserEtatSuivant();
         }
     }
-}
-
-std::vector<std::vector<int>> Grille::toIntMatrix() const {
-    std::vector<std::vector<int>> matrice(nb_lignes, std::vector<int>(nb_colonnes));
-
-    for (int i = 0; i < nb_lignes; i++) {
-        for (int j = 0; j < nb_colonnes; j++) {
-            matrice[i][j] = cellules[i][j]->estVivante() ? 1 : 0;
-        }
-    }
-
-    return matrice;
 }

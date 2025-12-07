@@ -1,7 +1,2 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #include "Etat.hpp"
-
-// Vide car Etat est une classe abstraite
+// vide car classe abstraite

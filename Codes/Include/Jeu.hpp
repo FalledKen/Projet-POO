@@ -1,25 +1,21 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #ifndef JEU_HPP
 #define JEU_HPP
 
+#include <memory>
 #include "Grille.hpp"
 #include "Regles.hpp"
 #include "Afficheurs.hpp"
-#include <string>
+#include "Fichier.hpp"
 
 class Jeu {
 private:
     Grille g;
     std::unique_ptr<Regles> r;
-    
-    std::string nom_fichier;
+    Fichier fichier;
+
     int iterations;
-    int TempsParIteration;
+    int tempsParIteration;
     int mode;
-    bool est_torique;
 
     void lancerModeConsole();
     void lancerModeGraphique();
@@ -27,10 +23,10 @@ private:
 public:
     Jeu();
     void lancerSimulation();
+
     int getIterations() const;
     int getTempsParIteration() const;
     int getMode() const;
-
 };
 
 #endif

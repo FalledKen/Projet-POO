@@ -1,7 +1,3 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #ifndef AFFICHEURS_HPP
 #define AFFICHEURS_HPP
 

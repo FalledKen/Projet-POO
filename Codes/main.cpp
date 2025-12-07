@@ -18,3 +18,5 @@ int main() {
 
     return 0;
 }
+
+//le main comme ceci est épuré

@@ -1,7 +1,3 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #include "Cellule.hpp"
 #include "Grille.hpp"
 #include "Regles.hpp"
@@ -19,18 +15,24 @@ Etat& Cellule::getEtatActuel() const {
     return *etat_actuel;
 }
 
-Etat& Cellule::getEtatSuivant() const {
-    return *etat_suivant;
+Etat* Cellule::getEtatSuivant() const {
+    return etat_suivant.get();
+}
+
+int Cellule::getLigne() const {
+    return ligne;
+}
+
+int Cellule::getColonne() const {
+    return colonne;
 }
 
 void Cellule::calculerEtatSuivant() {
-    // Calculer état suivant
     int voisines = grille->compterVoisinesVivantes(ligne, colonne);
     etat_suivant = regles->changementEtat(*etat_actuel, voisines);
 }
 
 void Cellule::actualiserEtatSuivant() {
-    // Appliquer état suivant
     if (etat_suivant != nullptr){
         etat_actuel = std::move(etat_suivant);
     }

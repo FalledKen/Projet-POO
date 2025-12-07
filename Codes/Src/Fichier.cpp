@@ -1,91 +1,82 @@
-//
-// Created by celes on 03/12/2025.
-//
+#include "Fichier.hpp"
+#include "Grille.hpp"
+#include "Cellule.hpp"
 
-#include "../Include/Fichier.hpp"
-#include <fstream>
 #include <iostream>
-#include <vector>
+#include <fstream>
 #include <filesystem>
+#include <sstream>
+#include <stdexcept>
 
-bool Fichier::creer_dossier(const std::string& nom_fichier) {
-    const std::string nom_dossier = nom_fichier + "_out";
-    std::filesystem::path dir = nom_dossier;
+Fichier::Fichier() : entree(""), dossier_out("") {}
 
-    if (std::filesystem::create_directory(dir)) {
-        std::cout << dir << " créé avec succès.\n";
-        return false;
-    }
-
-    std::cout << "Le dossier existe déjà ou n'a pas pu être créé.\n";
-    return true;
+//demander a lutilisateur le nom du fichier d'entrée
+void Fichier::demanderNomFichier() {
+    std::cout << "Nom du fichier d'entrée (sans extension .txt) : ";
+    std::cin >> entree;
+    dossier_out = entree + "_out";
 }
 
-bool Fichier::ecrire_fichier(const std::vector<std::vector<int>> &matrice, const std::string& nom_fichier, const int iteration) {
-    std::string dir = nom_fichier + "_out/iteration_";
-    dir += std::to_string(iteration);
-    dir += ".txt";
-    std::ofstream fichier(dir);
-
-    if (!fichier) {
-        return true;
+//lire le fichier d'entrée et construire la matrice d'entiers
+void Fichier::lireFichier() {
+    std::ifstream fichier(entree + ".txt");
+    if (!fichier.is_open()) {
+        throw std::runtime_error("Impossible d'ouvrir le fichier : " + entree);
     }
 
-    const size_t nb_lignes = matrice.size();
-    const size_t nb_colonnes = matrice[0].size();
-    fichier << nb_lignes << " " << nb_colonnes << "\n";
+    matrice.clear();
+    std::string ligne;
 
-    for (size_t i = 0; i < nb_lignes; i++) {
-        for (size_t j = 0; j < nb_colonnes; j++) {
-            fichier << matrice[i][j] << " ";
+    //ignorer la première ligne (fait beuger totalemet notre affichage)
+    if (!std::getline(fichier, ligne)) {
+        throw std::runtime_error("Fichier vide.");
+    }
+
+    //lire les lignes suivantes normalement
+    while (std::getline(fichier, ligne)) {
+        std::vector<int> ligne_vecteur;
+        for (char c : ligne) {
+            if (c == '0') ligne_vecteur.push_back(0);
+            else if (c == '1') ligne_vecteur.push_back(1);
         }
-        fichier << "\n";
-    }
-    fichier.close();
-    return false;
-}
 
-std::vector<std::vector<int>> Fichier::lire_fichier(const std::string& nom_fichier_seul) {
-    const std::string nom_fichier = nom_fichier_seul + ".txt";
-    std::ifstream fichier(nom_fichier); // Lire un fichier
-
-    if (!fichier) {
-        std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
-    }
-
-    int nb_ligne, nb_colonnes;
-    fichier >> nb_ligne >> nb_colonnes;
-
-    std::vector<std::vector<int>> matrice(nb_ligne, std::vector<int>(nb_colonnes));
-
-    for (int i = 0; i < nb_ligne; i++) {
-        for (int j = 0; j < nb_colonnes; j++) {
-            fichier >> matrice[i][j];
+        if (!ligne_vecteur.empty()) {
+            matrice.push_back(ligne_vecteur);
         }
     }
 
     fichier.close();
+}
 
+
+const std::vector<std::vector<int>>& Fichier::getMatrice() const {
     return matrice;
 }
 
-std::vector<std::vector<int>> Fichier::convertir_matrice_pointeurs(
-        const std::vector<std::vector<int*>>& matrice_ptr)
-{
-    std::vector<std::vector<int>> matrice;
-    matrice.resize(matrice_ptr.size());
+//pour créer le dossier de sortie
+void Fichier::creerDossierOut() {
+    if (std::filesystem::exists(dossier_out)) {
+        std::filesystem::remove_all(dossier_out);
+    }
+    std::filesystem::create_directory(dossier_out);
+}
 
-    for (size_t i = 0; i < matrice_ptr.size(); i++) {
-        matrice[i].resize(matrice_ptr[i].size());
 
-        for (size_t j = 0; j < matrice_ptr[i].size(); j++) {
-            if (matrice_ptr[i][j] != nullptr) {
-                matrice[i][j] = *(matrice_ptr[i][j]);  // copie de la valeur
-            } else {
-                matrice[i][j] = 0;  // valeur par défaut si pointeur nul
-            }
-        }
+//pour créer un fichier de sortie pour l'iteration donnée
+void Fichier::creerFichierOut(int iteration, const Grille& g) {
+    std::string nom_fichier = dossier_out + "/iteration_" + std::to_string(iteration) + ".txt";
+    std::ofstream sortie(nom_fichier);
+    if (!sortie.is_open()) {
+        throw std::runtime_error("Impossible de créer le fichier : " + nom_fichier);
     }
 
-    return matrice;
+    for (int i = 0; i < g.getLignes(); ++i) {
+        for (int j = 0; j < g.getColonnes(); ++j) {
+            sortie << (g.getCellule(i, j).estVivante() ? '1' : '0');
+            sortie << ' ';
+        }
+        sortie << '\n';
+    }
+
+    sortie.close();
 }

@@ -1,10 +1,9 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #include "ReglesJDLV.hpp"
+#include "EtatVivant.hpp"
+#include "EtatMort.hpp"
 
-RegleJDLV::RegleJDLV(){}
+RegleJDLV::RegleJDLV(){
+}
 
 std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbVoisines) {
 
@@ -12,14 +11,19 @@ std::unique_ptr<Etat> RegleJDLV::changementEtat(const Etat& etatCourant, int nbV
         if (nbVoisines == 2 || nbVoisines == 3){
             return std::make_unique<EtatVivant>();
         }
-        return std::make_unique<EtatMort>();
+        else{
+            return std::make_unique<EtatMort>();
+        }
     }
 
     else if (etatCourant.valeur() == 0) {
         if (nbVoisines == 3){
             return std::make_unique<EtatVivant>();
         }
-        return std::make_unique<EtatMort>();
+        else{
+            return std::make_unique<EtatMort>();
+        }
     }
+    // si jamais aucune condition n'est vérifiée, pour éviter le crash du code...
     return std::make_unique<EtatMort>();
 }

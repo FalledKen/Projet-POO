@@ -1,7 +1,3 @@
-//
-// Created by silic on 01/12/2025.
-//
-
 #ifndef ETATVIVANT_HPP
 #define ETATVIVANT_HPP
 
