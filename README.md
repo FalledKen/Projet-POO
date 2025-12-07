@@ -1,22 +1,13 @@
 # Projet-POO
-Notre projet de POO en A2 à CESI en spécialité informatique
+Voici le dépot de nos fichiers 
 
-Pour les pas très doués avec GitHub,
+Dans le dossier racine nous pouvons retrouver les différents diagrammes de fonctionnement et notices.
 
-Au démarrage, aller dans le fichier que vous voulez depuis l'invite de commande,
-sur la page GitHub du projet cliquer sur le bouton vert "<> Code", Copier le lien HTTPS
+Dans le dossier Codes on retrouve les fichiers :
+-jeu_de_la_vie Qui est l'executable qui permet de lancer le jeu programmé
+-main.cpp qui est le fichier qui permet de rassembler tout les codes
+-makefile Qui est le fichier permettant de compiler les fichiers du jeu
 
-Retourner dans l'invite de commande , et taper : git clone avec le lien de GitHub.
-
-Maintenant vous aurez les fichier...
-
-Lorsque vous modifiez des fichiers : 
-
-	git status (vérifier les documents modifiés)
-	git add <nom du fichier> (Préparer à ajouter le fichier à la mise à jour)
-	git commit -m "<Texte explicatif des modifs>"
-	git push (Envoyer sur GitHub vos modifs, probablement besoin de vos logins)
-
-Avant de reprendre :
-
-	git pull (mettre à jour votre fichier sur celui du GitHub)
+C'est aussi dans le dossier Codes qu'il faut mettre le fichier texte de la matrice de départ du jeux.
+Le dossier de retour des itérations sera aussi situé dans le dossier racine.
+De plus nous trouvons aussi les dossiers "Src" et "Includes", Ils comportent respectivement les fichiers .cpp et .hpp qui composent notre jeu.
